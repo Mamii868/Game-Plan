@@ -2,8 +2,7 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import App from "./App";
 import "./index.css";
-import { ThemeProvider, colors, createTheme } from "@mui/material";
-import { blue, green } from "@mui/material/colors";
+import { ThemeProvider, createTheme } from "@mui/material";
 
 const lightTheme = createTheme({
   palette: {
