@@ -4,27 +4,7 @@ import App from "./App";
 import "./index.css";
 import { ThemeProvider, createTheme } from "@mui/material";
 
-const lightTheme = createTheme({
-  palette: {
-    background: {
-      main: "#ffffff",
-    },
-    primary: {
-      main: "#44BBA4",
-    },
-    text: {
-      main: "#E7E5DF",
-    },
-  },
-  typography: {
-    h1: {
-      fontSize: "4rem",
-      fontWeight: 550,
-    },
-  },
-})
-
-const darkTheme = createTheme({
+const theme = createTheme({
   palette: {
     background: {
       main: "#393E41",
@@ -32,15 +12,24 @@ const darkTheme = createTheme({
     primary: {
       main: "#44BBA4",
     },
-    text: {
+    secondary: {
       main: "#E7E5DF",
     },
-    
-  }
+    text: {
+      main: "WHITE"
+    },
+  },
+  typography: {
+    h1: {
+      fontSize: "4rem",
+      fontWeight: 550, 
+    },
+  },
 })
-ReactDOM.createRoot(document.getElementById("root")).render(
+
+ReactDOM.createRoot(document.getElementById("root")).render( 
   <React.StrictMode>
-    <ThemeProvider theme={darkTheme}>
+    <ThemeProvider theme={theme}>
       <App />
     </ThemeProvider>
   </React.StrictMode>
