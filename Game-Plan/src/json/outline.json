@@ -1,0 +1,38 @@
+[
+    {
+        "userID":0,
+        "taskID":0,
+        "taskCategory": "Cleaning",
+        "taskName": "Clean Closet",
+        "taskDesc": "Please clean the closet :)",
+        "isEXP": true,
+        "categoryEXP": 10,
+        "isReward": false,
+        "completed": false,
+        "hidden": false
+    },
+    {
+        "userID":0,
+        "taskID":1,
+        "taskCategory": "Cleaning",
+        "taskName": "Vacuum Flooe",
+        "taskDesc": "The floor is very dirty. You should change that! Grab the vacuum and start going at it.",
+        "isEXP": true,
+        "categoryEXP": 20,
+        "isReward": false,
+        "completed": false,
+        "hidden": false
+    },
+    {
+        "userID":0,
+        "taskID":2,
+        "taskCategory": "Cleaning",
+        "taskName": "Clean Closet",
+        "taskDesc": "Please clean the closet :)",
+        "isEXP": true,
+        "categoryEXP": 10,
+        "isReward": false,
+        "completed": false,
+        "hidden": false
+    }
+]
