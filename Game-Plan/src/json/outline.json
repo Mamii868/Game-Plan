@@ -1,37 +1,35 @@
 [
     {
         "userID":0,
-        "taskID":0,
         "taskCategory": "Cleaning",
         "taskName": "Clean Closet",
         "taskDesc": "Please clean the closet :)",
-        "isEXP": true,
         "categoryEXP": 10,
-        "isReward": false,
+        "reward": false,
+        "deadline": "07-31-2023",
         "completed": false,
         "hidden": false
     },
     {
         "userID":0,
-        "taskID":1,
         "taskCategory": "Cleaning",
         "taskName": "Vacuum Flooe",
         "taskDesc": "The floor is very dirty. You should change that! Grab the vacuum and start going at it.",
-        "isEXP": true,
         "categoryEXP": 20,
-        "isReward": false,
+        "reward": false,
+        "deadline": "08-31-2023",
         "completed": false,
         "hidden": false
     },
     {
         "userID":0,
-        "taskID":2,
         "taskCategory": "Cleaning",
-        "taskName": "Clean Closet",
-        "taskDesc": "Please clean the closet :)",
+        "taskName": "Take Out Trash",
+        "taskDesc": "There are flies in the trash can. Take it to the dumpster!",
         "isEXP": true,
-        "categoryEXP": 10,
-        "isReward": false,
+        "categoryEXP": 5,
+        "reward": false,
+        "deadline": "08-5-2023",
         "completed": false,
         "hidden": false
     }
