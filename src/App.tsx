@@ -1,4 +1,3 @@
-import { useState } from "react";
 import "./App.css";
 import Navbar from "./Navbar/Navbar";
 import { Box, Typography, Button } from "@mui/material";
