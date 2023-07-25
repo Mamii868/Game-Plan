@@ -1,8 +1,34 @@
 import "./App.css";
-import Navbar from "./Navbar/Navbar";
-import { Box, Typography, Button } from "@mui/material";
-
+import Navbar from "./components/Navbar/Navbar";
+import { Box, Typography, Button, CssBaseline, ThemeProvider, createTheme } from "@mui/material";
 function App() {
+  
+const theme = createTheme({
+  palette: {
+    mode: 'dark',
+    background: {
+      default: '#393E41',
+      paper: '#44BBA4', 
+    },
+    primary: {
+      main: '#44BBA4',
+    },
+    secondary: {
+      main: '#E7E5DF',
+    },
+    text: {
+      primary: 'rgba(255, 255, 255, 0.7)',
+      secondary: 'rgba(255, 255, 255, 0.7)',
+    },
+  },
+  typography: {
+    h1: {
+      fontSize: '4rem',
+      fontWeight: 550,
+    },
+  },
+});
+
   const user = {
     fname: "",
     userName: "MMoten",
@@ -40,32 +66,35 @@ function App() {
   }
 
   return (
-    <div className="App">
-      <Navbar />
-      <Box
-        className="titleBox"
-        sx={{
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "center",
-          marginTop: "30vh",
-        }}
-      >
-        <Typography variant="h2" className="title">
-          Welcome, {checkUser()}
-        </Typography>
-      </Box>
-      <Box
-        className="descBox"
-        sx={{
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "center",
-        }}
-      >
-        {checkAccount()}
-      </Box>
-    </div>
+    <ThemeProvider theme={theme}>
+          <CssBaseline/>
+      <div className="App">
+        <Navbar />
+        <Box
+          className="titleBox"
+          sx={{
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            marginTop: "30vh",
+          }}
+        >
+          <Typography variant="h2" className="title">
+            Welcome, {checkUser()}
+          </Typography>
+        </Box>
+        <Box
+          className="descBox"
+          sx={{
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+          }}
+        >
+          {checkAccount()}
+        </Box>
+      </div>
+    </ThemeProvider>
   );
 }
 
