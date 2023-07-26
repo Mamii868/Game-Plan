@@ -1,47 +1,61 @@
 import "./App.css";
 import Navbar from "./components/Navbar/Navbar";
-import { Box, Typography, Button, CssBaseline, ThemeProvider, createTheme } from "@mui/material";
-function App() {
-  
-const theme = createTheme({
-  palette: {
-    mode: 'dark',
-    background: {
-      default: '#393E41',
-      paper: '#44BBA4', 
+import {
+  Box,
+  Typography,
+  Button,
+  CssBaseline,
+  ThemeProvider,
+  createTheme,
+  Theme,
+} from "@mui/material";
+const App = () => {
+  //dark mode theme
+  const theme: Theme = createTheme({
+    palette: {
+      mode: "dark",
+      background: {
+        default: "#393E41",
+        paper: "#44BBA4",
+      },
+      primary: {
+        main: "#44BBA4",
+      },
+      secondary: {
+        main: "#E7E5DF",
+      },
+      text: {
+        primary: "#E7E5DF",
+        secondary: "#393E41",
+      },
     },
-    primary: {
-      main: '#44BBA4',
+    typography: {
+      h1: {
+        fontSize: "4rem",
+        fontWeight: 550,
+      },
     },
-    secondary: {
-      main: '#E7E5DF',
-    },
-    text: {
-      primary: '#E7E5DF',
-      secondary: '#393E41',
-    },
-  },
-  typography: {
-    h1: {
-      fontSize: '4rem',
-      fontWeight: 550,
-    },
-  },
-});
+  });
+  // TODO: delete this and pull user info from database
+  interface user {
+    fname: string;
+    userName: string;
+  }
 
   const user = {
     fname: "",
     userName: "MMoten",
   };
-
+  // grabs the first name of user to put in landing page
   function checkUser() {
     if (!user.fname || user.fname.trim() === "") {
       user.fname = "Guest";
     } else {
-      return user.fname;
+      return user.fname;          
     }
   }
-
+  // checks if user is logged in and changes landing page
+  // TODO: change the home screen if user is logged in
   function checkAccount() {
     if (!user || user.fname.trim() === "Guest") {
       return (
@@ -67,9 +81,10 @@ const theme = createTheme({
 
   return (
     <ThemeProvider theme={theme}>
-          <CssBaseline/>
+      <CssBaseline />
       <div className="App">
         <Navbar />
+        {/* Welcome user box */}
         <Box
           className="titleBox"
           sx={{
@@ -83,6 +98,7 @@ const theme = createTheme({
             Welcome, {checkUser()}
           </Typography>
         </Box>
+        {/* create account/sign in box */}
         <Box
           className="descBox"
           sx={{
