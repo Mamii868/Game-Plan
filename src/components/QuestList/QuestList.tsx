@@ -4,7 +4,7 @@ import supabase from "../../config/supabaseClient";
 import QuestCard from "../QuestCard/QuestCard";
 import { Quest } from "../../types/types";
 
-const QuestList: React.FC<Quest> = () => {
+const QuestList: React.FC = () => {
   const [fetchErr, setFetchErr] = useState<string | null>(null);
   const [quests, setQuests] = useState<Quest[] | null>(null);
 
