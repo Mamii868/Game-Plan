@@ -1,6 +1,6 @@
 import { AppBar, Toolbar, IconButton, Typography } from "@mui/material";
 import { SportsEsports } from "@mui/icons-material";
-function Navbar() {
+const Navbar: React.FC = () => {
   return (
     <AppBar position="static">
       <Toolbar>
