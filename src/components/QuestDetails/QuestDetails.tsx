@@ -11,7 +11,7 @@ import { Quest } from "../../types/types";
 type QuestDetailsProps = {
   quest: Quest;
   open: boolean;
-  handleClose: () => void;
+  handleClose: (event: React.MouseEvent<HTMLButtonElement>) => void;
 };
 
 const QuestDetails: React.FC<QuestDetailsProps> = ({

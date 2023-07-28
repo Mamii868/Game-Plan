@@ -13,7 +13,8 @@ const QuestCard: React.FC<QuestListProps> = ({ quest }) => {
         setOpen(true);
     }
     
-    const handleClose = () => {
+    const handleClose = (event: React.MouseEvent<HTMLButtonElement>) => {
+        event.stopPropagation();
         setOpen(false);
     }
   return (
