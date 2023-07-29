@@ -1,10 +1,10 @@
 import { Box, Typography } from "@mui/material";
 import { useState, useEffect } from "react";
 import supabase from "../../config/supabaseClient";
-import QuestCard from "../QuestCard/QuestCard";
+import {QuestCard} from "../index";
 import { Quest } from "../../types/types";
 
-const QuestList: React.FC = () => {
+export const QuestList: React.FC = () => {
   const [fetchErr, setFetchErr] = useState<string | null>(null);
   const [quests, setQuests] = useState<Quest[] | null>(null);
 
@@ -38,5 +38,3 @@ const QuestList: React.FC = () => {
     </div>
   );
 };
-
-export default QuestList;

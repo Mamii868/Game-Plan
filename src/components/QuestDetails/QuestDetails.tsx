@@ -14,7 +14,7 @@ type QuestDetailsProps = {
   handleClose: (event: React.MouseEvent<HTMLButtonElement>) => void;
 };
 
-const QuestDetails: React.FC<QuestDetailsProps> = ({
+export const QuestDetails: React.FC<QuestDetailsProps> = ({
   quest,
   open,
   handleClose,
@@ -37,5 +37,3 @@ const QuestDetails: React.FC<QuestDetailsProps> = ({
     </Dialog>
   );
 };
-
-export default QuestDetails;

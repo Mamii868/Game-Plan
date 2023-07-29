@@ -2,11 +2,11 @@ import { CheckBox } from "@mui/icons-material";
 import { ListItem, ListItemButton, ListItemText } from "@mui/material";
 import {useState} from 'react'
 import { Quest } from "../../types/types";
-import QuestDetails from "../QuestDetails/QuestDetails";
+import {QuestDetails} from "../index";
 type QuestListProps = {
   quest: Quest;
 };
-const QuestCard: React.FC<QuestListProps> = ({ quest }) => {
+export const QuestCard: React.FC<QuestListProps> = ({ quest }) => {
     const [open, setOpen] = useState(false);
 
     const handleOpen = () => {
@@ -27,5 +27,3 @@ const QuestCard: React.FC<QuestListProps> = ({ quest }) => {
     </ListItem>
   );
 };
-
-export default QuestCard;
