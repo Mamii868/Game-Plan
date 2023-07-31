@@ -9,5 +9,3 @@ export type Quest = {
   deadline: string | null;
   hidden: boolean;
 };
-
-export * from "./section-ids/section-id";

@@ -1,4 +1,5 @@
 import "./App.css";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { Landing, Navbar, QuestList } from "./components";
 import {
   CssBaseline,
@@ -38,8 +39,12 @@ const App = () => {
     <ThemeProvider theme={theme}>
       <CssBaseline /> 
       <Navbar />
-      <Landing />
-      <QuestList />
+    <Router>
+     <Routes>
+      <Route path="/" element={<Landing/>} />
+      <Route path="/quests" element={<QuestList/>}/>
+     </Routes>
+    </Router>
     </ThemeProvider>
   );
 };

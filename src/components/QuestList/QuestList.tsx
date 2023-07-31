@@ -29,7 +29,7 @@ export const QuestList: React.FC = () => {
       {quests && (
         <Box>
           {quests.map((quest) => (
-            <Typography variant="h6">
+            <Typography variant="h6" key={quest.id}>
               <QuestCard quest={quest} key={quest.id} />
             </Typography>
           ))}
