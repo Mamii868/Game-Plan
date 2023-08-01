@@ -11,8 +11,7 @@ import Button from '@mui/material/Button';
 import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import { Settings } from '@mui/icons-material';
-import {ReactComponent as Logo} from '../../assets/Gameplan-Logo.svg';
-import { SvgIcon } from '@mui/material';
+import logoPng from '../../assets/Gameplan-Logo.png';
 
 const pages = ['Character', 'Quests', 'Account'];
 const settings = ['Profile', 'Dashboard', 'Logout'];
@@ -37,12 +36,10 @@ export const Navbar: React.FC =() => {
   };
 
   return (
-    <AppBar position="static">
-      <Container maxWidth="xl">
+    <AppBar position="static" sx={{paddingLeft:'0px'}}>
+      <Container maxWidth="xl" disableGutters>
         <Toolbar disableGutters>
-          <SvgIcon sx={{ fontSize: 65, display: { xs: 'none', md: 'flex' }, mr: 1 }}>
-            <Logo/>
-          </SvgIcon>
+        <img src={logoPng} alt="GamePlan Logo" style={{width: '60px', display: 'block', marginRight: '8px'}} />
           <Typography
             variant="h6"
             noWrap
