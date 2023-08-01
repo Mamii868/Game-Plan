@@ -14,8 +14,8 @@ import { Settings } from '@mui/icons-material';
 import {ReactComponent as Logo} from '../../assets/Gameplan-Logo.svg';
 import { SvgIcon } from '@mui/material';
 
-const pages = ['Products', 'Pricing', 'Blog'];
-const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
+const pages = ['Character', 'Quests', 'Account'];
+const settings = ['Profile', 'Dashboard', 'Logout'];
 
 export const Navbar: React.FC =() => {
   const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(null);
@@ -40,7 +40,7 @@ export const Navbar: React.FC =() => {
     <AppBar position="static">
       <Container maxWidth="xl">
         <Toolbar disableGutters>
-          <SvgIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }}>
+          <SvgIcon sx={{ fontSize: 65, display: { xs: 'none', md: 'flex' }, mr: 1 }}>
             <Logo/>
           </SvgIcon>
           <Typography
@@ -97,7 +97,6 @@ export const Navbar: React.FC =() => {
               ))}
             </Menu>
           </Box>
-          <SvgIcon component={Logo}  sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} />
           <Typography
             variant="h5"
             noWrap
@@ -114,7 +113,7 @@ export const Navbar: React.FC =() => {
               textDecoration: 'none',
             }}
           >
-            LOGO
+            Gameplan
           </Typography>
           <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
             {pages.map((page) => (
