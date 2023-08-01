@@ -1,7 +1,7 @@
-import { Box, Typography } from "@mui/material";
+import { Typography, Grid } from "@mui/material";
 import { useState, useEffect } from "react";
 import supabase from "../../config/supabaseClient";
-import {QuestCard} from "../index";
+import { QuestCard } from "../index";
 import { Quest } from "../../types/types";
 
 export const QuestList: React.FC = () => {
@@ -24,16 +24,16 @@ export const QuestList: React.FC = () => {
   });
   return (
     <div>
-      <Typography variant="h1">Quest Board</Typography>
+      <Typography variant="h1" display={'flex'} justifyContent={'center'}>Quest Board</Typography>
       {fetchErr && <p>{fetchErr}</p>}
       {quests && (
-        <Box>
+        <Grid container spacing={3}>
           {quests.map((quest) => (
-            <Typography variant="h6" key={quest.id}>
-              <QuestCard quest={quest} key={quest.id} />
-            </Typography>
+            <Grid item xs={12} md={6} key={quest.id}>
+              <QuestCard quest={quest} />
+            </Grid>
           ))}
-        </Box>
+        </Grid>
       )}
     </div>
   );
