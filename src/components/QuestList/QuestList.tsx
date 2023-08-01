@@ -1,12 +1,17 @@
-import { Typography, Grid } from "@mui/material";
+import { Typography, Grid, useTheme, useMediaQuery } from "@mui/material";
 import { useState, useEffect } from "react";
 import supabase from "../../config/supabaseClient";
 import { QuestCard } from "../index";
 import { Quest } from "../../types/types";
+import { QuestDetails } from "../index";
 
 export const QuestList: React.FC = () => {
+  const theme = useTheme();
+  const matches = useMediaQuery(theme.breakpoints.up('md'));
+
   const [fetchErr, setFetchErr] = useState<string | null>(null);
   const [quests, setQuests] = useState<Quest[] | null>(null);
+  const [selectedQuest, setSelectedQuest] = useState<Quest | null>(null);
 
   useEffect(() => {
     const fetchQuests = async () => {
@@ -22,19 +27,34 @@ export const QuestList: React.FC = () => {
     };
     fetchQuests();
   });
+
+
+  const handleQuestClick = (quest: Quest) => {
+    setSelectedQuest(quest);
+  };
+
+
+
   return (
-    <div>
-      <Typography variant="h1" display={'flex'} justifyContent={'center'}>Quest Board</Typography>
+    <Grid container spacing={3}>
+    <Grid item xs={12} md={8}>
+      <Typography variant="h1">Quest Board</Typography>
       {fetchErr && <p>{fetchErr}</p>}
       {quests && (
         <Grid container spacing={3}>
           {quests.map((quest) => (
-            <Grid item xs={12} md={6} key={quest.id}>
-              <QuestCard quest={quest} />
+            <Grid item xs={12} sm={6} md={12} key={quest.id}>
+              <QuestCard quest={quest} onQuestClick={handleQuestClick} />
             </Grid>
           ))}
         </Grid>
       )}
-    </div>
+    </Grid>
+    {matches && selectedQuest && (
+      <Grid item xs={12} md={4}>
+        <QuestDetails quest={selectedQuest} open handleClose={() => setSelectedQuest(null)} />
+      </Grid>
+    )}
+  </Grid>
   );
 };
