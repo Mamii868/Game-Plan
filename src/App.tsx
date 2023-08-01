@@ -37,14 +37,14 @@ const App = () => {
 
   return (
     <ThemeProvider theme={theme}>
+      <Router>
       <CssBaseline /> 
       <Navbar />
-    <Router>
      <Routes>
       <Route path="/" element={<Landing/>} />
       <Route path="/quests" element={<QuestList/>}/>
      </Routes>
-    </Router>
+     </Router>
     </ThemeProvider>
   );
 };
