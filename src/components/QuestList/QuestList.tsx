@@ -36,9 +36,11 @@ export const QuestList: React.FC = () => {
 
 
   return (
+  <div>
+  <Typography variant="h1" display={'flex'}  justifyContent={'center'}>Quest Board</Typography>
     <Grid container spacing={3}>
     <Grid item xs={12} md={8}>
-      <Typography variant="h1">Quest Board</Typography>
+
       {fetchErr && <p>{fetchErr}</p>}
       {quests && (
         <Grid container spacing={3}>
@@ -56,5 +58,6 @@ export const QuestList: React.FC = () => {
       </Grid>
     )}
   </Grid>
+  </div>
   );
 };
