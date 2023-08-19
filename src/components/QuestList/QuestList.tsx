@@ -1,4 +1,4 @@
-import { Typography, Grid, useTheme, useMediaQuery } from "@mui/material";
+import { Typography, Grid, useTheme, useMediaQuery, Theme } from "@mui/material";
 import { useState, useEffect } from "react";
 import supabase from "../../config/supabaseClient";
 import { QuestCard } from "../index";
@@ -6,8 +6,8 @@ import { Quest } from "../../types/types";
 import { QuestDetails } from "../index";
 
 export const QuestList: React.FC = () => {
-  const theme = useTheme();
-  const matches = useMediaQuery(theme.breakpoints.up('md'));
+  const theme: Theme = useTheme();
+  const matches: boolean = useMediaQuery(theme.breakpoints.up('md'));
 
   const [fetchErr, setFetchErr] = useState<string | null>(null);
   const [quests, setQuests] = useState<Quest[] | null>(null);

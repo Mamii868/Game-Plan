@@ -11,10 +11,15 @@ import { useState } from "react";
 
 export const CreateQuest: React.FC = () => {
   const [open, setOpen] = useState(false);
+  const [check, setCheck] = useState(false)
 
-  const handleOpen = () => {
-    setOpen(true);
-  };
+  const handleChange = () => {
+    if (check) {
+      setCheck(false)
+    } else {
+      setCheck(true)
+    }
+  }
 
   const handleClose = (event: React.MouseEvent<HTMLButtonElement>) => {
     event.stopPropagation();
@@ -33,7 +38,7 @@ export const CreateQuest: React.FC = () => {
           <TextField required id="questName" label="Title" />
           <TextField id="questDesc" label="Description" />
           <FormControlLabel
-            control={<CheckBox defaultChecked />}
+            control={<CheckBox onChange = {handleChange} />}
             label="Experience?"
           />
         </Box>
