@@ -41,7 +41,7 @@ export const Navbar: React.FC = () => {
   };
 
   return (
-    <AppBar position="static" sx={{ paddingLeft: "0px" }}>
+    <AppBar position="static" sx={{ paddingLeft: "0px", marginBottom: '30px' }}>
       <Container maxWidth="xl" disableGutters>
         <Toolbar disableGutters>
           <Box display={{xs: 'none', md: "block"}}><img
