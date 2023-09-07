@@ -23,9 +23,10 @@ type CreateQuestProps = {
   onClose: () => void;
 };
 export const CreateQuest: React.FC<CreateQuestProps> = ({ open, onClose }) => {
-  const [check, setCheck] = useState(false);
-
+  const [xpCheck, setXPCheck] = useState<boolean>(false);
   const [xp, setXP] = useState<number>(0);
+  // const [hiddenCheck, setHiddenCheck] = useState<boolean>(false)
+
 
   const handleXPSliderChange = (event: Event, newValue: number | number[]) => {
     setXP(newValue as number);
@@ -43,14 +44,23 @@ export const CreateQuest: React.FC<CreateQuestProps> = ({ open, onClose }) => {
       setXP(100);
     }
   };
-  const handleCheck = () => {
-    if (check) {
-      setCheck(false);
+  const handleXPCheck = () => {
+    if (xpCheck) {
+      setXPCheck(false);
       setXP(0);
     } else {
-      setCheck(true);
+      setXPCheck(true);
     }
   };
+
+  // const handleHiddenCheck = () => {
+  //   if (hiddenCheck) {
+  //     setHiddenCheck(false);
+  //   }
+  //   else {
+  //     setHiddenCheck(true)
+  //   }
+  // }
   return (
     <Dialog open={open} onClose={onClose}>
       <DialogTitle
@@ -76,14 +86,14 @@ export const CreateQuest: React.FC<CreateQuestProps> = ({ open, onClose }) => {
             control={
               <Checkbox
                 color="secondary"
-                checked={check}
-                onChange={handleCheck}
+                checked={xpCheck}
+                onChange={handleXPCheck}
               />
             }
             label="Experience?"
           />
           {/* XP Slider */}
-          {check ? (
+          {xpCheck ? (
             <Grid container spacing={2} alignItems="center" hidden>
               <Grid item>
                 <Typography>XP</Typography>
@@ -118,6 +128,7 @@ export const CreateQuest: React.FC<CreateQuestProps> = ({ open, onClose }) => {
           <LocalizationProvider dateAdapter={AdapterDayjs}>
             <DateTimePicker />
           </LocalizationProvider>
+
         </Box>
       </DialogContent>
     </Dialog>
