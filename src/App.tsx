@@ -14,17 +14,16 @@ const App = () => {
       mode: "dark",
       background: {
         default: "#393E41", // gray-black
-        paper: "#44BBA4", // teal
+        paper: "#393E41", // teal
       },
       primary: {
         main: "#44BBA4", // teal
       },
       secondary: {
-        main: "#E7BB41", // gold
+        main: "#FFD560", // yellow
       },
       text: {
         primary: "#E7E5DF", // gray-white
-        secondary: "#393E41", // gray-black
       },
     },
     typography: {

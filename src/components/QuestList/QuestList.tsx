@@ -77,7 +77,7 @@ export const QuestList: React.FC = () => {
           </Grid>
         )}
       </Grid>
-      <Fab color="primary" aria-label="add" onClick={handleOpenCreateMenu} sx={{position: "fixed", bottom: "2%", right: "2%"}}>
+      <Fab color="secondary" aria-label="add" onClick={handleOpenCreateMenu} sx={{position: "fixed", bottom: "2%", right: "2%"}}>
         <AddIcon />
       </Fab>
       <CreateQuest open={openCreateMenu} onClose={handleCloseCreateMenu}/>
