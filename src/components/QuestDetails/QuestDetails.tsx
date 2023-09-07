@@ -20,7 +20,7 @@ export const QuestDetails: React.FC<QuestDetailsProps> = ({
   return (
     <div>
       <DialogTitle>{quest.questName}</DialogTitle>
-      <DialogContent>
+      <DialogContent  sx={{color: 'white'}}>
         <DialogContentText>{quest.questDesc}</DialogContentText>
         <DialogContentText>
           {"Category EXP: " + quest.categoryEXP}

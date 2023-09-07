@@ -9,8 +9,11 @@ import {
 } from "@mui/material";
 import { useState } from "react";
 
-export const CreateQuest: React.FC = () => {
-  const [open, setOpen] = useState(false);
+type CreateQuestProps = {
+  open: boolean;
+  onClose: () => void;
+}
+export const CreateQuest: React.FC<CreateQuestProps> = ({open, onClose}) => {
   const [check, setCheck] = useState(false)
 
   const handleChange = () => {
@@ -21,12 +24,8 @@ export const CreateQuest: React.FC = () => {
     }
   }
 
-  const handleClose = (event: React.MouseEvent<HTMLButtonElement>) => {
-    event.stopPropagation();
-    setOpen(false);
-  };
   return (
-    <Dialog open={open} onClose={handleClose}>
+    <Dialog open={open} onClose={onClose}>
       <DialogTitle>New Quest</DialogTitle>
       <DialogContent>
         <Box
