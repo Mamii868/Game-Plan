@@ -20,7 +20,7 @@ const App = () => {
         main: "#44BBA4", // teal
       },
       secondary: {
-        main: "#E7E5DF", // gray-white
+        main: "#E7BB41", // gold
       },
       text: {
         primary: "#E7E5DF", // gray-white
