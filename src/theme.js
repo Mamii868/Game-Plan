@@ -129,111 +129,109 @@ export const themeSettings = (mode) => {
   return {
     palette: {
       mode: mode,
-      ...colors(
-        mode === "dark"
-          ? {
-              primary: {
-                main: colors.primary[500],
-              },
-              secondary: {
-                main: colors.greenAccent[500],
-              },
-              neutral: {
-                dark: colors.blackAccent[700],
-                main: colors.blackAccent[500],
-                light: colors.blackAccent[100],
-              },
-              background: {
-                default: colors.blackAccent[500],
-              },
-            }
-          : {
-              primary: {
-                main: colors.primary[100],
-              },
-              secondary: {
-                main: colors.greenAccent[500],
-              },
-              neutral: {
-                dark: colors.blackAccent[700],
-                main: colors.blackAccent[500],
-                light: colors.blackAccent[100],
-              },
-              background: {
-                default: colors.lightGrayAccent[500],
-              },
-              typography: {
-                fontFamily: [
-                  "Inter",
-                  "Avenir",
-                  "Helvetica",
-                  "Arial",
-                  "sans-serif",
-                ].join(","),
-                fontSize: 12,
-              },
-              h1: {
-                fontFamily: [
-                  "Inter",
-                  "Avenir",
-                  "Helvetica",
-                  "Arial",
-                  "sans-serif",
-                ].join(","),
-                fontSize: 40,
-              },
-              h2: {
-                fontFamily: [
-                  "Inter",
-                  "Avenir",
-                  "Helvetica",
-                  "Arial",
-                  "sans-serif",
-                ].join(","),
-                fontSize: 32,
-              },
-              h3: {
-                fontFamily: [
-                  "Inter",
-                  "Avenir",
-                  "Helvetica",
-                  "Arial",
-                  "sans-serif",
-                ].join(","),
-                fontSize: 24,
-              },
-              h4: {
-                fontFamily: [
-                  "Inter",
-                  "Avenir",
-                  "Helvetica",
-                  "Arial",
-                  "sans-serif",
-                ].join(","),
-                fontSize: 20,
-              },
-              h5: {
-                fontFamily: [
-                  "Inter",
-                  "Avenir",
-                  "Helvetica",
-                  "Arial",
-                  "sans-serif",
-                ].join(","),
-                fontSize: 16,
-              },
-              h6: {
-                fontFamily: [
-                  "Inter",
-                  "Avenir",
-                  "Helvetica",
-                  "Arial",
-                  "sans-serif",
-                ].join(","),
-                fontSize: 14,
-              },
-            }
-      ),
+      ...(mode === "dark"
+        ? {
+            primary: {
+              main: colors.primary[500],
+            },
+            secondary: {
+              main: colors.greenAccent[500],
+            },
+            neutral: {
+              dark: colors.blackAccent[700],
+              main: colors.blackAccent[500],
+              light: colors.blackAccent[100],
+            },
+            background: {
+              default: colors.blackAccent[500],
+            },
+          }
+        : {
+            primary: {
+              main: colors.primary[100],
+            },
+            secondary: {
+              main: colors.greenAccent[500],
+            },
+            neutral: {
+              dark: colors.blackAccent[700],
+              main: colors.blackAccent[500],
+              light: colors.blackAccent[100],
+            },
+            background: {
+              default: colors.lightGrayAccent[500],
+            },
+            typography: {
+              fontFamily: [
+                "Inter",
+                "Avenir",
+                "Helvetica",
+                "Arial",
+                "sans-serif",
+              ].join(","),
+              fontSize: 12,
+            },
+            h1: {
+              fontFamily: [
+                "Inter",
+                "Avenir",
+                "Helvetica",
+                "Arial",
+                "sans-serif",
+              ].join(","),
+              fontSize: 40,
+            },
+            h2: {
+              fontFamily: [
+                "Inter",
+                "Avenir",
+                "Helvetica",
+                "Arial",
+                "sans-serif",
+              ].join(","),
+              fontSize: 32,
+            },
+            h3: {
+              fontFamily: [
+                "Inter",
+                "Avenir",
+                "Helvetica",
+                "Arial",
+                "sans-serif",
+              ].join(","),
+              fontSize: 24,
+            },
+            h4: {
+              fontFamily: [
+                "Inter",
+                "Avenir",
+                "Helvetica",
+                "Arial",
+                "sans-serif",
+              ].join(","),
+              fontSize: 20,
+            },
+            h5: {
+              fontFamily: [
+                "Inter",
+                "Avenir",
+                "Helvetica",
+                "Arial",
+                "sans-serif",
+              ].join(","),
+              fontSize: 16,
+            },
+            h6: {
+              fontFamily: [
+                "Inter",
+                "Avenir",
+                "Helvetica",
+                "Arial",
+                "sans-serif",
+              ].join(","),
+              fontSize: 14,
+            },
+          }),
     },
   };
 };
@@ -249,13 +247,13 @@ export const useMode = () => {
 
   const colorMode = useMemo(
     () => ({
-        toggleColorMode: () =>
+      toggleColorMode: () =>
         setMode((prev) => (prev === "light" ? "dark" : "light")),
     }),
     []
   );
 
-  const theme = useMemo(() => createTheme(themeSettings(mode)), [mode])
+  const theme = useMemo(() => createTheme(themeSettings(mode)), [mode]);
 
-  return [theme, colorMode]
+  return [theme, colorMode];
 };
