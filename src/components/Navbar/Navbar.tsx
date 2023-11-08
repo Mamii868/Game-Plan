@@ -10,14 +10,19 @@ import Container from "@mui/material/Container";
 import Button from "@mui/material/Button";
 import Tooltip from "@mui/material/Tooltip";
 import MenuItem from "@mui/material/MenuItem";
-import { Settings } from "@mui/icons-material";
+import { useTheme } from "@mui/material";
+import { LightModeOutlined, Settings } from "@mui/icons-material";
 import { Link } from "react-router-dom";
+import { ColorModeContext, tokens } from "../../theme";
 import logoPng from "../../assets/Gameplan-Logo.png";
 
 const pages = ["Character", "Quests", "Account"];
 const settings = ["Profile", "Dashboard", "Logout"];
 
 export const Navbar: React.FC = () => {
+  const theme = useTheme();
+  const colors = tokens(theme.palette.mode);
+  const colorMode = React.useContext(ColorModeContext);
   const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(
     null
   );
@@ -41,14 +46,22 @@ export const Navbar: React.FC = () => {
   };
 
   return (
-    <AppBar position="static" sx={{ paddingLeft: "0px", marginBottom: '30px',  backgroundColor: "primary.main" }}>
+    <AppBar 
+      position="static"
+      sx={{
+        paddingLeft: "0px",
+        marginBottom: "30px",
+        backgroundColor: colors.greenAccent[500],
+      }}
+    >
       <Container maxWidth="xl" disableGutters>
         <Toolbar disableGutters>
-          <Box display={{xs: 'none', md: "block"}}><img
-            src={logoPng}
-            alt="GamePlan Logo"
-            style={{ width: "60px", display: "block", marginRight: "8px" }}
-          />
+          <Box display={{ xs: "none", md: "block" }}>
+            <img
+              src={logoPng}
+              alt="GamePlan Logo"
+              style={{ width: "60px", display: "block", marginRight: "8px" }}
+            />
           </Box>
           <Typography
             variant="h6"
@@ -63,7 +76,7 @@ export const Navbar: React.FC = () => {
               letterSpacing: ".1rem",
               color: "inherit",
               textDecoration: "none",
-              fontSize: '28px',
+              fontSize: "28px",
             }}
           >
             GamePlan
@@ -121,33 +134,40 @@ export const Navbar: React.FC = () => {
               letterSpacing: ".1rem",
               color: "inherit",
               textDecoration: "none",
-              fontSize: '28px',
+              fontSize: "28px",
             }}
           >
             GamePlan
           </Typography>
           <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
             {pages.map((page) => (
-           <Box component="span" display="inline-block" key={page}>
-           <Link 
-             to={`/${page}`} 
-             style={{textDecoration: 'none'}}
-           >
-             <Button
-               onClick={handleCloseNavMenu}
-               sx={{ my: 2, color: "inherit", display: "block" }}
-             >
-               <Typography style={{fontWeight: 'bold', color: '#E7E5DF'}}>{page}</Typography>
-             </Button>
-           </Link>
-         </Box>
+              <Box component="span" display="inline-block" key={page}>
+                <Link to={`/${page}`} style={{ textDecoration: "none" }}>
+                  <Button
+                    onClick={handleCloseNavMenu}
+                    sx={{ my: 2, color: "inherit", display: "block" }}
+                  >
+                    <Typography
+                      style={{ fontWeight: "bold", color: "#E7E5DF" }}
+                    >
+                      {page}
+                    </Typography>
+                  </Button>
+                </Link>
+              </Box>
             ))}
           </Box>
-
           <Box sx={{ flexGrow: 0 }}>
             <Tooltip title="Open settings">
               <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
                 <Settings />
+              </IconButton>
+            </Tooltip>
+          </Box>
+          <Box sx={{ flexGrow: 0 }}>
+            <Tooltip title="Open settings">
+              <IconButton onClick={colorMode.toggleColorMode} sx={{ p: 0 }}>
+                <LightModeOutlined />
               </IconButton>
             </Tooltip>
             <Menu
