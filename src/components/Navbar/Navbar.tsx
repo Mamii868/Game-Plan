@@ -11,15 +11,23 @@ import Button from "@mui/material/Button";
 import Tooltip from "@mui/material/Tooltip";
 import MenuItem from "@mui/material/MenuItem";
 import { useTheme } from "@mui/material";
-import { LightModeOutlined, Settings } from "@mui/icons-material";
+import {
+  DarkModeOutlined,
+  LightModeOutlined,
+  Settings,
+} from "@mui/icons-material";
 import { Link } from "react-router-dom";
 import { ColorModeContext, tokens } from "../../theme";
 import logoPng from "../../assets/Gameplan-Logo.png";
 
-const pages = ["Character", "Quests", "Account"];
-const settings = ["Profile", "Dashboard", "Logout"];
+const pages = ["Character", "Quests"];
+const settings = ["Profile", "Dashboard"];
 
 export const Navbar: React.FC = () => {
+  //! TEMP
+
+  const login = false;
+
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
   const colorMode = React.useContext(ColorModeContext);
@@ -46,7 +54,7 @@ export const Navbar: React.FC = () => {
   };
 
   return (
-    <AppBar 
+    <AppBar
       position="static"
       sx={{
         paddingLeft: "0px",
@@ -118,6 +126,11 @@ export const Navbar: React.FC = () => {
                   </Typography>
                 </MenuItem>
               ))}
+              <MenuItem onClick={handleCloseNavMenu}>
+                <Typography textAlign="center">
+                  <Link to={`/Account`}>"Account"</Link>
+                </Typography>
+              </MenuItem>
             </Menu>
           </Box>
           <Typography
@@ -139,23 +152,62 @@ export const Navbar: React.FC = () => {
           >
             GamePlan
           </Typography>
-          <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
+          <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex",} }}>
             {pages.map((page) => (
-              <Box component="span" display="inline-block" key={page}>
-                <Link to={`/${page}`} style={{ textDecoration: "none" }}>
+              <Box component="span" display="inline-block" key={page} >
+                <Link to={`/${page}`} style={{ textDecoration: "none", color: "inherit" }}>
                   <Button
                     onClick={handleCloseNavMenu}
-                    sx={{ my: 2, color: "inherit", display: "block" }}
+                    sx={{
+                      my: 2,
+                      display: "block",
+                      fontWeight: "bold",
+                      fontSize: "1rem",
+                      color: 'inherit'
+                    }}
                   >
-                    <Typography
-                      style={{ fontWeight: "bold", color: "#E7E5DF" }}
-                    >
-                      {page}
-                    </Typography>
+                    {page}
                   </Button>
                 </Link>
               </Box>
             ))}
+            {login ? (
+              <Box component="span" display="inline-block">
+                <Link to={`/Account`} style={{ textDecoration: "none",color: "inherit" }}>
+                  <Button
+                    onClick={handleCloseNavMenu}
+                    sx={{
+                      my: 2,
+                      display: "block",
+                      fontWeight: "bold",
+                      fontSize: "1rem",
+                    }}
+                  >
+                    Account
+                  </Button>
+                </Link>
+              </Box>
+            ) : (
+              <Box
+                component="span"
+                display="inline-block"
+              >
+                <Link to={`/Signup`} style={{ textDecoration: "none", color: "inherit" }}>
+                  <Button
+                    onClick={handleCloseNavMenu}
+                    sx={{
+                      my: 2,
+                      display: "block",
+                      fontWeight: "bold",
+                      fontSize: "1rem",
+                      color: "inherit"
+                    }}
+                  >
+                    Sign Up
+                  </Button>
+                </Link>
+              </Box>
+            )}
           </Box>
           <Box sx={{ flexGrow: 0 }}>
             <Tooltip title="Open settings">
@@ -165,11 +217,20 @@ export const Navbar: React.FC = () => {
             </Tooltip>
           </Box>
           <Box sx={{ flexGrow: 0 }}>
-            <Tooltip title="Open settings">
-              <IconButton onClick={colorMode.toggleColorMode} sx={{ p: 0 }}>
-                <LightModeOutlined />
-              </IconButton>
-            </Tooltip>
+            {theme.palette.mode === "dark" ? (
+              <Tooltip title="Dark Mode" className="darkM">
+                <IconButton onClick={colorMode.toggleColorMode} sx={{ p: 0 }}>
+                  <DarkModeOutlined />
+                </IconButton>
+              </Tooltip>
+            ) : (
+              <Tooltip title="Light Mode" className="lightM">
+                <IconButton onClick={colorMode.toggleColorMode} sx={{ p: 0 }}>
+                  <LightModeOutlined />
+                </IconButton>
+              </Tooltip>
+            )}
+
             <Menu
               sx={{ mt: "45px" }}
               id="menu-appbar"
@@ -191,6 +252,11 @@ export const Navbar: React.FC = () => {
                   <Typography textAlign="center">{setting}</Typography>
                 </MenuItem>
               ))}
+              <MenuItem onClick={handleCloseUserMenu}>
+                <Typography textAlign="center">
+                  {login ? "Logout" : "Login"}
+                </Typography>
+              </MenuItem>
             </Menu>
           </Box>
         </Toolbar>

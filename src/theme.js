@@ -85,17 +85,6 @@ export const tokens = (mode) => ({
           800: "#f5e4b3",
           900: "#faf1d9",
         },
-        primary: {
-          100: "#0b0c0d",
-          200: "#17191a",
-          300: "#222527",
-          400: "#2e3234",
-          500: "#393e41",
-          600: "#616567",
-          700: "#888b8d",
-          800: "#b0b2b3",
-          900: "#d7d8d9",
-        },
         grayAccent: {
           900: "#2a2a29",
           800: "#545351",
@@ -107,7 +96,7 @@ export const tokens = (mode) => ({
           200: "#edecea",
           100: "#f6f6f5",
         },
-        lightGrayAccent: {
+        primary: {
           100: "#fafaf9",
           200: "#f5f5f2",
           300: "#f1efec",
@@ -117,6 +106,17 @@ export const tokens = (mode) => ({
           700: "#8b8986",
           800: "#5c5c59",
           900: "#2e2e2d",
+        },
+        blackAccent: {
+          100: "#d7d8d9",
+          200: "#b0b2b3",
+          300: "#888b8d",
+          400: "#616567",
+          500: "#393e41",
+          600: "#2e3234",
+          700: "#222527",
+          800: "#17191a",
+          900: "#0b0c0d",
         },
       }),
 });
@@ -159,7 +159,7 @@ export const themeSettings = (mode) => {
               light: colors.blackAccent[100],
             },
             background: {
-              default: colors.lightGrayAccent[500],
+              default: colors.primary[600],
             },
             typography: {
               fontFamily: [
