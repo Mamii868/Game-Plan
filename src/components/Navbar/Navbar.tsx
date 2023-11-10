@@ -209,15 +209,7 @@ export const Navbar: React.FC = () => {
               </Box>
             )}
           </Box>
-          <Box sx={{ flexGrow: 0 }}>
-            <Tooltip title="Open settings">
-              <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                <Settings />
-              </IconButton>
-            </Tooltip>
-          </Box>
-          <Box sx={{ flexGrow: 0 }}>
-            {theme.palette.mode === "dark" ? (
+          {theme.palette.mode === "dark" ? (
               <Tooltip title="Dark Mode" className="darkM">
                 <IconButton onClick={colorMode.toggleColorMode} sx={{ p: 0 }}>
                   <DarkModeOutlined />
@@ -230,7 +222,14 @@ export const Navbar: React.FC = () => {
                 </IconButton>
               </Tooltip>
             )}
-
+          <Box sx={{ flexGrow: 0, p: "1vw"}}>
+            <Tooltip title="Open settings">
+              <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
+                <Settings />
+              </IconButton>
+            </Tooltip>
+          </Box>
+          <Box sx={{ flexGrow: 0 }}>
             <Menu
               sx={{ mt: "45px" }}
               id="menu-appbar"
