@@ -1,10 +1,10 @@
 import {
   Typography,
-  Grid,
   useTheme,
   useMediaQuery,
   Theme,
   Fab,
+  Box,
 } from "@mui/material";
 import { useState, useEffect } from "react";
 import supabase from "../../config/supabaseClient";
@@ -54,29 +54,24 @@ export const QuestList: React.FC = () => {
       <Typography variant="h1" display={"flex"} justifyContent={"center"}>
         Quest Board
       </Typography>
-      <Grid container spacing={3}>
-        <Grid item xs={12} md={8}>
+      <Box>
           {fetchErr && <p>{fetchErr}</p>}
           {quests && (
-            <Grid container spacing={3}>
+            <Box>
               {quests.map((quest) => (
-                <Grid item xs={12} sm={6} md={12} key={quest.id}>
                   <QuestCard quest={quest} onQuestClick={handleQuestClick} />
-                </Grid>
               ))}
-            </Grid>
+          </Box>
           )}
-        </Grid>
+          </Box>
+
         {matches && selectedQuest && (
-          <Grid item xs={12} md={4}>
             <QuestDetails
               quest={selectedQuest}
               open
               handleClose={() => setSelectedQuest(null)}
             />
-          </Grid>
         )}
-      </Grid>
       <Fab color="secondary" aria-label="add" onClick={handleOpenCreateMenu} sx={{position: "fixed", bottom: "2%", right: "2%"}}>
         <AddIcon />
       </Fab>
