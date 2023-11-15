@@ -1,4 +1,6 @@
 import { Button, Typography, Box } from "@mui/material";
+import { useTheme } from "@mui/material";
+import { tokens } from "../../theme";
 export const Landing: React.FC = () => {
   // TODO: delete this and pull user info from database
   interface user {
@@ -6,6 +8,8 @@ export const Landing: React.FC = () => {
     userName: string;
   }
 
+  const theme = useTheme();
+  const colors = tokens(theme.palette.mode);
   const user = {
     fname: "",
     userName: "MMoten",
@@ -34,6 +38,7 @@ export const Landing: React.FC = () => {
               justifyContent: "center",
               alignItems: "center",
               flexDirection: "column",
+              backgroundColor: colors.yellowAccent[500]
             }}
           >
             Create Account
