@@ -25,7 +25,6 @@ const settings = ["Profile", "Dashboard"];
 
 export const Navbar: React.FC = () => {
   //! TEMP
-
   const login = false;
 
   const theme = useTheme();
