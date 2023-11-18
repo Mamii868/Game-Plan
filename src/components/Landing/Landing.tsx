@@ -1,6 +1,9 @@
 import { Button, Typography, Box } from "@mui/material";
 import { useTheme } from "@mui/material";
 import { tokens } from "../../theme";
+import { SignUp } from "../index";
+import { useEffect, useState } from "react";
+import supabase from "../../config/supabaseClient";
 export const Landing: React.FC = () => {
   // TODO: delete this and pull user info from database
   interface user {
@@ -8,12 +11,33 @@ export const Landing: React.FC = () => {
     userName: string;
   }
 
+  
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
   const user = {
     fname: "",
     userName: "MMoten",
   };
+
+  useEffect(() => {
+    const { data, error } = await supabase.auth.getSession();
+    if (data) {
+      console.log("here is DATA: " + data )
+    } else {
+      console.log("Uh oh, Error " + error)
+    }
+  });
+
+  // SignUp 
+  const [open, handleOpen] = useState(false)
+
+  const openSignUp = () => {
+    handleOpen(true);
+  }
+
+  const closeSignUp = () => {
+    handleOpen(false)
+  }
   // grabs the first name of user to put in landing page
   function checkUser() {
     if (!user.fname || user.fname.trim() === "") {
@@ -32,13 +56,14 @@ export const Landing: React.FC = () => {
             Start your Game Plan Here!
           </Typography>
           <Button
+            onClick={openSignUp}
             variant="contained"
             sx={{
               display: "flex",
               justifyContent: "center",
               alignItems: "center",
               flexDirection: "column",
-              backgroundColor: colors.yellowAccent[500]
+              backgroundColor: colors.yellowAccent[500],
             }}
           >
             Create Account
@@ -75,6 +100,7 @@ export const Landing: React.FC = () => {
       >
         {checkAccount()}
       </Box>
+      <SignUp open={open} handleClose={closeSignUp} />
     </div>
   );
 };
