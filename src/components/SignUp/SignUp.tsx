@@ -1,9 +1,33 @@
-import { Email } from "@mui/icons-material";
 import supabase from "../../config/supabaseClient";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import {
+  Button,
+  Dialog,
+  DialogActions,
+  DialogContent,
+  DialogContentText,
+  DialogTitle,
+  Stack,
+  TextField,
+} from "@mui/material";
 
-export const SignUp: React.FC = () => {
+export const SignUp: React.FC<{ open: boolean; handleClose: () => void }> = ({
+  open,
+  handleClose,
+}) => {
   const [errorMessage, setErrorMessage] = useState<string>("");
+
+  //Login
+  const gitHubLogin = async () => {
+    await supabase.auth.signInWithOAuth({
+      provider: "github",
+    });
+  };
+  const discordLogin = async () => {
+    await supabase.auth.signInWithOAuth({
+      provider: "discord",
+    });
+  };
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -16,15 +40,21 @@ export const SignUp: React.FC = () => {
       return;
     }
     //TODO: Create User in Table
-    const { user, error } = await supabase.auth.signUp({
+    const { data, error } = await supabase.auth.signUp({
       email: formData.get("email") as string,
       password: formData.get("password") as string,
+      options: {
+        data: {
+          displayName: formData.get("displayName") as string,
+        },
+        emailRedirectTo: `/Quests`,
+      },
     });
 
     if (error) {
       setErrorMessage(error.message);
     } else {
-      console.log("User signed up:", user);
+      console.log("User signed up:", data);
 
       await supabase
         .from("profiles")
@@ -40,36 +70,16 @@ export const SignUp: React.FC = () => {
     );
   };
   return (
-    <div>
-      {errorMessage && <p>{errorMessage}</p>}
-      <form method="post">
-        <div>
-          <label htmlFor="firstName">First Name:</label>
-          <input type="text" id="firstName" name="firstName" required />
-        </div>
-
-        <div>
-          <label htmlFor="lastName">Last Name:</label>
-          <input type="text" id="lastName" name="lastName" required />
-        </div>
-
-        <div>
-          <label htmlFor="email">Email:</label>
-          <input type="email" id="email" name="email" required />
-        </div>
-
-        <div>
-          <label htmlFor="displayName">Display Name:</label>
-          <input type="text" id="displayName" name="displayName" required />
-        </div>
-
-        <div>
-          <label htmlFor="password">Password:</label>
-          <input type="password" id="password" name="password" required />
-        </div>
-
-        <button type="submit">Register</button>
-      </form>
+    <div style={{ textAlign: "center" }}>
+      <Dialog open={open} onClose={handleClose} fullWidth maxWidth="sm">
+        <DialogTitle>Login</DialogTitle>
+        <Button onClick={gitHubLogin}>Login With Github</Button>
+        <Button onClick={discordLogin}>Login With Discord</Button>
+        <DialogTitle>Sign Up</DialogTitle>
+        <DialogContent>
+          <TextField variant="outlined" 
+        </DialogContent>
+      </Dialog>
     </div>
   );
 };
