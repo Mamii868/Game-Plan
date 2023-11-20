@@ -11,7 +11,6 @@ export const Landing: React.FC = () => {
     userName: string;
   }
 
-  
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
   const user = {
@@ -20,24 +19,31 @@ export const Landing: React.FC = () => {
   };
 
   useEffect(() => {
-    const { data, error } = await supabase.auth.getSession();
-    if (data) {
-      console.log("here is DATA: " + data )
-    } else {
-      console.log("Uh oh, Error " + error)
-    }
-  });
+    const startSession = async () => {
+      try {
+        const { data, error } = await supabase.auth.getSession();
+        if (data) {
+          console.log("here is DATA: " + data);
+        } else {
+          console.log("Uh oh, Error " + error?.message);
+        }
+      } catch {
+        console.error("catch error")
+      }
+    };
+    startSession();
+  }, []);
 
-  // SignUp 
-  const [open, handleOpen] = useState(false)
+  // SignUp
+  const [open, handleOpen] = useState(false);
 
   const openSignUp = () => {
     handleOpen(true);
-  }
+  };
 
   const closeSignUp = () => {
-    handleOpen(false)
-  }
+    handleOpen(false);
+  };
   // grabs the first name of user to put in landing page
   function checkUser() {
     if (!user.fname || user.fname.trim() === "") {

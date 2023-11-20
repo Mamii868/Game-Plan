@@ -1,13 +1,10 @@
 import supabase from "../../config/supabaseClient";
-import { useEffect, useState } from "react";
+import {useState } from "react";
 import {
   Button,
   Dialog,
-  DialogActions,
   DialogContent,
-  DialogContentText,
   DialogTitle,
-  Stack,
   TextField,
 } from "@mui/material";
 
@@ -29,16 +26,17 @@ export const SignUp: React.FC<{ open: boolean; handleClose: () => void }> = ({
     });
   };
 
-  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
+  const handleSignUp = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     const form = event.currentTarget;
     const formData = new FormData(form);
     const displayName = formData.get("displayName") as string;
     const email = formData.get("email") as string;
-    if (isDisplayNameNotAllowed(displayName)) {
-      setErrorMessage("Display name contains not allowed words.");
-      return;
-    }
+    // if (isDisplayNameNotAllowed(displayName)) {
+    //   setErrorMessage("Display name contains not allowed words.");
+    //   return;
+    // }
+
     //TODO: Create User in Table
     const { data, error } = await supabase.auth.signUp({
       email: formData.get("email") as string,
@@ -63,12 +61,6 @@ export const SignUp: React.FC<{ open: boolean; handleClose: () => void }> = ({
     }
   };
   //TODO: Create bad word list
-  const isDisplayNameNotAllowed = (displayName: string) => {
-    const notAllowedWords = [import.meta.env.BADWORDLIST];
-    return notAllowedWords.some((word) =>
-      displayName.toLowerCase().includes(word)
-    );
-  };
   return (
     <div style={{ textAlign: "center" }}>
       <Dialog open={open} onClose={handleClose} fullWidth maxWidth="sm">
@@ -77,7 +69,13 @@ export const SignUp: React.FC<{ open: boolean; handleClose: () => void }> = ({
         <Button onClick={discordLogin}>Login With Discord</Button>
         <DialogTitle>Sign Up</DialogTitle>
         <DialogContent>
-          <TextField variant="outlined" 
+          <form onSubmit={handleSignUp}>
+          <TextField variant="outlined" label="Email" type="email" name="email"/>
+          <TextField variant="outlined" label="Password" type="password" name="password"/>
+          <TextField variant="outlined" label="Display Name" name="displayName"/>
+          <Button type="submit">Sign Up</Button>
+          </form>
+          <span color="red">{errorMessage}</span>
         </DialogContent>
       </Dialog>
     </div>
