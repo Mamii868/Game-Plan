@@ -1,6 +1,6 @@
 import "./App.css";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import { Landing, Navbar, QuestList, SignUp } from "./components";
+import { Landing, Navbar, QuestList } from "./components";
 import { CssBaseline, ThemeProvider } from "@mui/material";
 import { ColorModeContext, useMode } from "./theme";
 const App = () => {
@@ -14,7 +14,6 @@ const App = () => {
           <Routes>
             <Route path="/" element={<Landing />} />
             <Route path="/quests" element={<QuestList />} />
-            <Route path="/signup" element={<SignUp />} />
           </Routes>
         </Router>
       </ThemeProvider>
